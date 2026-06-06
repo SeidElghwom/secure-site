@@ -1,4 +1,3 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
@@ -9,7 +8,12 @@
   --grad: linear-gradient(135deg, #0ea5e9, #14b8a6);
 }
 
-* { box-sizing: border-box; }
+@import "tailwindcss";
+
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   font-family: var(--font-sans);
@@ -18,9 +22,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-::-webkit-scrollbar { width: 4px; height: 4px; }
-::-webkit-scrollbar-track { background: #f1f5f9; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
 
 .grad-text {
   background: linear-gradient(135deg, #0ea5e9, #14b8a6);

@@ -226,7 +226,7 @@ export const translations = {
       emailTitle: "Email",
       emailValues: ["contact@securenova.com", "sales@securenova.com"],
       phoneTitle: "Phone",
-      phoneValues: ["+222 37 47 69 83", "Available 24/7"],
+      phoneValues: ["+222 37 47 69 63", "Available 24/7"],
       locationTitle: "Location",
       locationValues: ["Nouakchott, Mauritania", "Serving all of Africa"],
       successMsg: "Message sent! We'll get back to you shortly.",

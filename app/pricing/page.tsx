@@ -16,80 +16,55 @@ export default function PricingPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section
-        className="py-28 px-10 text-center"
-        style={{ background: "linear-gradient(160deg,#1a3a5c 0%,#2a4a6a 60%,#c5d8e8 100%)" }}
-      >
-        <h1 className="text-5xl font-extrabold text-white mb-4 tracking-tight">{pp.title}</h1>
-        <p style={{ color: "rgba(255,255,255,0.7)" }}>{pp.subtitle}</p>
+      <section className="py-20 sm:py-28 px-4 sm:px-8 lg:px-10 text-center"
+        style={{ background: "linear-gradient(160deg,#1a3a5c 0%,#2a4a6a 60%,#c5d8e8 100%)" }}>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-4 tracking-tight">{pp.title}</h1>
+        <p style={{ color: "rgba(255,255,255,0.7)" }} className="text-sm sm:text-base">{pp.subtitle}</p>
       </section>
 
-      {/* Plans */}
-      <section className="py-16 px-10" style={{ background: "#f8fafc" }}>
-        <div className="max-w-5xl mx-auto grid grid-cols-3 gap-6">
+      {/* Plans: 1 col → 3 col */}
+      <section className="py-12 sm:py-16 px-4 sm:px-8 lg:px-10" style={{ background: "#f8fafc" }}>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {pp.plans.map((p, i) => {
             const Icon = PLAN_ICONS[i];
             const popular = PLAN_POPULAR[i];
             return (
-              <div
-                key={p.name}
-                className={`bg-white rounded-2xl p-8 border transition-all hover:shadow-xl relative ${
+              <div key={p.name}
+                className={`bg-white rounded-2xl p-6 sm:p-8 border relative transition-all hover:shadow-xl ${
                   popular ? "border-cyan-400 shadow-lg" : "border-slate-100"
-                }`}
-              >
+                }`}>
                 {popular && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span
-                      className="text-xs font-bold text-white px-4 py-1.5 rounded-full"
-                      style={{ background: GRAD }}
-                    >
+                    <span className="text-xs font-bold text-white px-4 py-1.5 rounded-full" style={{ background: GRAD }}>
                       {pp.popular}
                     </span>
                   </div>
                 )}
-
-                {/* Icon */}
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 shadow-sm"
-                  style={{ background: popular ? GRAD : "linear-gradient(135deg,#334155,#475569)" }}
-                >
-                  <Icon size={22} color="white" strokeWidth={1.8} />
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5 shadow-sm"
+                  style={{ background: popular ? GRAD : "linear-gradient(135deg,#334155,#475569)" }}>
+                  <Icon size={20} color="white" strokeWidth={1.8} />
                 </div>
-
-                <h3 className="text-xl font-extrabold text-slate-900 mb-1">{p.name}</h3>
-                <p className="text-sm text-slate-500 mb-6 leading-relaxed">{p.sub}</p>
-
-                {/* Price */}
-                <div className="mb-6">
+                <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 mb-1">{p.name}</h3>
+                <p className="text-xs sm:text-sm text-slate-500 mb-5 leading-relaxed">{p.sub}</p>
+                <div className="mb-5">
                   {isCustom(p.price) ? (
-                    <span className="text-3xl font-extrabold text-slate-900">{p.price}</span>
+                    <span className="text-2xl sm:text-3xl font-extrabold text-slate-900">{p.price}</span>
                   ) : (
                     <>
-                      <span className="text-4xl font-extrabold text-slate-900">{p.price}</span>
+                      <span className="text-3xl sm:text-4xl font-extrabold text-slate-900">{p.price}</span>
                       <span className="text-slate-400 text-sm ml-1.5">{pp.currency}</span>
                     </>
                   )}
                 </div>
-
-                {/* CTA */}
-                <Link
-                  href="/about"
-                  className="block text-center text-sm font-semibold py-2.5 rounded-xl mb-8 no-underline transition-opacity hover:opacity-90"
-                  style={
-                    popular
-                      ? { background: GRAD, color: "#fff" }
-                      : { background: "#0f172a", color: "#fff" }
-                  }
-                >
+                <Link href="/about"
+                  className="block text-center text-sm font-semibold py-2.5 rounded-xl mb-6 no-underline transition-opacity hover:opacity-90"
+                  style={popular ? { background: GRAD, color: "#fff" } : { background: "#0f172a", color: "#fff" }}>
                   {p.cta}
                 </Link>
-
-                {/* Features */}
-                <ul className="flex flex-col gap-3">
+                <ul className="flex flex-col gap-2.5">
                   {p.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-sm text-slate-600">
-                      <Check size={14} className="text-cyan-500 flex-shrink-0 mt-0.5" strokeWidth={2.5} />
+                    <li key={f} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
+                      <Check size={13} className="text-cyan-500 flex-shrink-0 mt-0.5" strokeWidth={2.5} />
                       {f}
                     </li>
                   ))}
@@ -101,27 +76,21 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-16 px-10 bg-white">
+      <section className="py-12 sm:py-16 px-4 sm:px-8 lg:px-10 bg-white">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-slate-900 text-center mb-12">{pp.faqTitle}</h2>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 text-center mb-8 sm:mb-12">{pp.faqTitle}</h2>
           <div className="flex flex-col gap-3">
             {pp.faqs.map((faq, i) => (
-              <div
-                key={i}
-                className="border border-slate-100 rounded-xl overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between px-6 py-4 text-left bg-white hover:bg-slate-50 transition-colors cursor-pointer"
-                >
-                  <span className="font-semibold text-slate-900 text-sm">{faq.q}</span>
+              <div key={i} className="border border-slate-100 rounded-xl overflow-hidden">
+                <button onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full flex items-center justify-between px-4 sm:px-6 py-4 text-left bg-white hover:bg-slate-50 transition-colors cursor-pointer">
+                  <span className="font-semibold text-slate-900 text-sm pr-4">{faq.q}</span>
                   {openFaq === i
                     ? <ChevronUp size={16} className="text-cyan-500 flex-shrink-0" />
-                    : <ChevronDown size={16} className="text-slate-400 flex-shrink-0" />
-                  }
+                    : <ChevronDown size={16} className="text-slate-400 flex-shrink-0" />}
                 </button>
                 {openFaq === i && (
-                  <div className="px-6 pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                  <div className="px-4 sm:px-6 pb-4 sm:pb-5 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
                     {faq.a}
                   </div>
                 )}
@@ -131,22 +100,17 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-10 text-center" style={{ background: "#0f1f35" }}>
-        <h2 className="text-3xl font-extrabold text-white mb-3">{pp.ctaTitle}</h2>
-        <p className="text-slate-400 mb-10 max-w-md mx-auto">{pp.ctaSubtitle}</p>
-        <div className="flex justify-center gap-4">
-          <Link
-            href="/about"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white px-6 py-3 rounded-xl no-underline hover:opacity-90 transition-opacity"
-            style={{ background: GRAD }}
-          >
+      <section className="py-16 sm:py-20 px-4 sm:px-8 lg:px-10 text-center" style={{ background: "#0f1f35" }}>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">{pp.ctaTitle}</h2>
+        <p className="text-slate-400 mb-8 sm:mb-10 max-w-md mx-auto text-sm sm:text-base">{pp.ctaSubtitle}</p>
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+          <Link href="/about"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl no-underline hover:opacity-90 transition-opacity"
+            style={{ background: GRAD }}>
             {pp.requestDemo} <ArrowRight size={14} />
           </Link>
-          <Link
-            href="/about"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white px-6 py-3 rounded-xl border border-white/30 no-underline hover:bg-white/10 transition-colors"
-          >
+          <Link href="/about"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-white/30 no-underline hover:bg-white/10 transition-colors">
             {pp.contactSales}
           </Link>
         </div>
