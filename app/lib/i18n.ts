@@ -637,4 +637,4 @@ export const translations = {
   },
 } as const;
 
-export type Translations = typeof translations.en;
+export type Translations = (typeof translations)[keyof typeof translations];
