@@ -1,60 +1,115 @@
 "use client";
 import Link from "next/link";
+import {
+  Shield, Fingerprint, ScanFace, AlertTriangle, Eye, TrendingUp,
+  Search, Cpu, Zap, Activity, Lock, Globe, Wifi, ArrowRight,
+  Building2, Landmark, ShieldCheck, Phone, ShoppingCart, Building,
+  CheckCircle2, ChevronRight,
+} from "lucide-react";
 import { useLang } from "./lib/LangContext";
+
+const GRAD = "linear-gradient(135deg,#0ea5e9,#14b8a6)";
+const NAVY = "#0f1f35";
+
+/* ── SOLUTION ICONS ── */
+const SOL_ICONS = [Shield, ScanFace, Fingerprint, AlertTriangle, Eye, TrendingUp, Search, Cpu];
+const SOL_GRADS = [
+  "linear-gradient(135deg,#0ea5e9,#14b8a6)",
+  "linear-gradient(135deg,#0ea5e9,#14b8a6)",
+  "linear-gradient(135deg,#3b82f6,#1d4ed8)",
+  "linear-gradient(135deg,#1e293b,#334155)",
+  "linear-gradient(135deg,#06b6d4,#0891b2)",
+  "linear-gradient(135deg,#10b981,#059669)",
+  "linear-gradient(135deg,#3b82f6,#1d4ed8)",
+  "linear-gradient(135deg,#10b981,#059669)",
+];
+
+/* ── INDUSTRY ICONS ── */
+const IND_ICONS = [Landmark, Building2, Building, ShieldCheck, Phone, ShoppingCart, Globe];
+const IND_GRADS = [
+  "linear-gradient(135deg,#1e3a5f,#2d6a8a)",
+  "linear-gradient(135deg,#1e3a5f,#2d5a7a)",
+  "linear-gradient(135deg,#0f4a2a,#1a6a3a)",
+  "linear-gradient(135deg,#1a1a2e,#16213e)",
+  "linear-gradient(135deg,#0f2a1a,#1a4a2a)",
+  "linear-gradient(135deg,#1a1a0f,#2a2a10)",
+  "linear-gradient(135deg,#0f1a2a,#1a2a3a)",
+];
+
+/* ── ARCH ICONS ── */
+const ARCH_ICONS = [Globe, Shield, Cpu, Lock, Activity];
 
 function Hero() {
   const { t } = useLang();
   const h = t.hero;
   return (
-    <section className="min-h-screen flex items-center px-12 py-20"
-      style={{ background: "linear-gradient(160deg,#0f1f35 0%,#0f2a45 55%,#1a3a5c 100%)" }}>
+    <section
+      className="min-h-screen flex items-center px-10 py-24"
+      style={{ background: "linear-gradient(160deg,#0f1f35 0%,#0f2a45 55%,#1a3a5c 100%)" }}
+    >
       <div className="max-w-6xl mx-auto w-full grid grid-cols-2 gap-16 items-center">
+        {/* Left */}
         <div>
-          <span className="inline-flex items-center gap-2 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6"
-            style={{ background: "rgba(20,184,166,0.2)", border: "1px solid rgba(20,184,166,0.4)", color: "#14b8a6" }}>
-            {h.badge}
+          <span
+            className="inline-flex items-center gap-2 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6"
+            style={{ background: "rgba(20,184,166,0.15)", border: "1px solid rgba(20,184,166,0.35)", color: "#5eead4" }}
+          >
+            <Shield size={12} /> {h.badge}
           </span>
-          <h1 className="text-5xl font-extrabold text-white leading-tight mb-5">{h.title}</h1>
+          <h1 className="text-5xl font-extrabold text-white leading-[1.1] tracking-tight mb-5">
+            {h.title}
+          </h1>
           <p className="text-slate-400 text-base leading-relaxed mb-9 max-w-lg">{h.subtitle}</p>
           <div className="flex gap-4">
-            <Link href="/pricing"
-              className="flex items-center gap-2 text-sm font-semibold text-white px-5 py-2.5 rounded-lg no-underline"
-              style={{ background: "linear-gradient(135deg,#0ea5e9,#14b8a6)" }}>
-              {h.requestDemo}
+            <Link
+              href="/pricing"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white px-5 py-2.5 rounded-xl no-underline hover:opacity-90 transition-opacity"
+              style={{ background: GRAD }}
+            >
+              {h.requestDemo} <ArrowRight size={14} />
             </Link>
-            <Link href="/about"
-              className="flex items-center gap-2 text-sm font-semibold text-white px-5 py-2.5 rounded-lg border-2 border-white no-underline hover:bg-white/10 transition-colors">
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white px-5 py-2.5 rounded-xl border border-white/30 no-underline hover:bg-white/10 transition-colors"
+            >
               {h.contactSales}
             </Link>
           </div>
         </div>
-        <div className="rounded-2xl p-7"
-          style={{ background: "rgba(15,26,51,0.8)", border: "1px solid rgba(255,255,255,.12)" }}>
-          <div className="flex items-center justify-between text-slate-400 text-sm mb-5">
-            <span>{h.dashboard}</span>
-            <span className="text-cyan-400">〜</span>
+
+        {/* Dashboard card */}
+        <div
+          className="rounded-2xl p-7"
+          style={{ background: "rgba(15,26,51,0.8)", border: "1px solid rgba(255,255,255,0.1)" }}
+        >
+          <div className="flex items-center justify-between mb-5">
+            <span className="text-slate-400 text-sm font-medium">{h.dashboard}</span>
+            <Activity size={16} className="text-cyan-400" />
           </div>
-          <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="grid grid-cols-2 gap-3 mb-5">
             {[
-              { val: "99.8%", label: h.kycAccuracy, color: "#14b8a6" },
-              { val: "2.3ms", label: h.responseTime, color: "#14b8a6" },
-              { val: "247",   label: h.threatsBlocked, color: "#14b8a6" },
+              { val: "99.8%", label: h.kycAccuracy, color: "#38bdf8" },
+              { val: "2.3ms", label: h.responseTime, color: "#38bdf8" },
+              { val: "247",   label: h.threatsBlocked, color: "#34d399" },
               { val: "100%",  label: h.uptime, color: "#34d399" },
-            ].map(s => (
-              <div key={s.label} className="rounded-xl p-4"
-                style={{ background: "rgba(15,31,53,0.6)", border: "1px solid rgba(255,255,255,.08)" }}>
-                <div className="text-2xl font-extrabold" style={{ color: s.color }}>{s.val}</div>
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="rounded-xl p-4"
+                style={{ background: "rgba(15,31,53,0.7)", border: "1px solid rgba(255,255,255,0.07)" }}
+              >
+                <div className="text-2xl font-extrabold tracking-tight" style={{ color: s.color }}>{s.val}</div>
                 <div className="text-xs text-slate-500 mt-1">{s.label}</div>
               </div>
             ))}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2.5">
             <div className="flex items-center gap-2 text-xs text-slate-400">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
+              <span className="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0" style={{ boxShadow: "0 0 6px #34d399" }} />
               {h.monitoring}
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-400">
-              <span className="w-2 h-2 rounded-full bg-blue-400 inline-block" />
+              <span className="w-2 h-2 rounded-full bg-blue-400 flex-shrink-0" />
               {h.aiModels}
             </div>
           </div>
@@ -66,20 +121,25 @@ function Hero() {
 
 function Trusted() {
   const { t } = useLang();
-  const icons = ["⚡","〜","🔒","🛡","🌐"];
+  const ICONS = [Zap, Activity, Lock, ShieldCheck, Globe];
   return (
-    <section className="py-16 px-12 border-b border-slate-100">
-      <h2 className="text-2xl font-extrabold text-center mb-10 text-slate-900">{t.trusted.title}</h2>
-      <div className="flex justify-center gap-16 flex-wrap">
-        {t.trusted.features.map((f, i) => (
-          <div key={f} className="flex flex-col items-center gap-3">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl"
-              style={{ background: "linear-gradient(135deg,#0ea5e9,#14b8a6)" }}>
-              {icons[i]}
+    <section className="py-16 px-10 bg-white border-b border-slate-100">
+      <h2 className="text-2xl font-extrabold text-center text-slate-900 mb-12">{t.trusted.title}</h2>
+      <div className="flex justify-center gap-14 flex-wrap max-w-5xl mx-auto">
+        {t.trusted.features.map((f, i) => {
+          const Icon = ICONS[i];
+          return (
+            <div key={f} className="flex flex-col items-center gap-3">
+              <div
+                className="w-16 h-16 rounded-full flex items-center justify-center shadow-md"
+                style={{ background: GRAD }}
+              >
+                <Icon size={26} color="white" strokeWidth={1.8} />
+              </div>
+              <span className={`text-xs text-center max-w-[110px] leading-snug font-medium ${i < 2 ? "text-cyan-500" : "text-slate-500"}`}>{f}</span>
             </div>
-            <span className="text-xs text-slate-500 text-center max-w-28">{f}</span>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
@@ -87,42 +147,40 @@ function Trusted() {
 
 function SolutionsGrid() {
   const { t } = useLang();
-  const grads = [
-    "linear-gradient(135deg,#0ea5e9,#14b8a6)",
-    "linear-gradient(135deg,#0ea5e9,#14b8a6)",
-    "linear-gradient(135deg,#0ea5e9,#1E40AF)",
-    "linear-gradient(135deg,#059669,#14b8a6)",
-    "linear-gradient(135deg,#0ea5e9,#14b8a6)",
-    "linear-gradient(135deg,#D97706,#EA580C)",
-    "linear-gradient(135deg,#0ea5e9,#1E40AF)",
-    "linear-gradient(135deg,#059669,#14b8a6)",
-  ];
-  const icons = ["🛡","📄","👆","⚠","👁","📈","🔍","📡"];
   return (
-    <section className="py-20 px-12" style={{ background: "#F4F7FA" }}>
+    <section className="py-20 px-10" style={{ background: "#f8fafc" }}>
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold mb-3">{t.solutions.title}</h2>
-          <p className="text-slate-500">{t.solutions.subtitle}</p>
+        <div className="text-center mb-14">
+          <h2 className="text-3xl font-extrabold text-slate-900 mb-3">{t.solutions.title}</h2>
+          <p className="text-slate-500 max-w-xl mx-auto">{t.solutions.subtitle}</p>
         </div>
         <div className="grid grid-cols-4 gap-5">
-          {t.solutions.cards.map((c, i) => (
-            <div key={c.label}
-              className="bg-white rounded-2xl p-6 border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer">
-              <div className="w-13 h-13 rounded-xl flex items-center justify-center text-white text-2xl mb-5"
-                style={{ background: grads[i], width: 52, height: 52 }}>
-                {icons[i]}
+          {t.solutions.cards.map((c, i) => {
+            const Icon = SOL_ICONS[i];
+            return (
+              <div
+                key={c.label}
+                className="bg-white rounded-2xl p-6 border border-slate-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-pointer group"
+              >
+                <div
+                  className="w-13 h-13 rounded-xl flex items-center justify-center mb-5 shadow-sm"
+                  style={{ background: SOL_GRADS[i], width: 52, height: 52 }}
+                >
+                  <Icon size={22} color="white" strokeWidth={1.8} />
+                </div>
+                <h3 className="font-bold text-base text-slate-900 mb-2">{c.label}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed">{c.desc}</p>
               </div>
-              <h3 className="font-bold text-base mb-2">{c.label}</h3>
-              <p className="text-sm text-slate-500">{c.desc}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <div className="text-center mt-10">
-          <Link href="/solutions"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white px-6 py-2.5 rounded-lg no-underline"
-            style={{ background: "linear-gradient(135deg,#0ea5e9,#14b8a6)" }}>
-            {t.solutions.viewAll}
+          <Link
+            href="/solutions"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white px-6 py-2.5 rounded-xl no-underline hover:opacity-90 transition-opacity"
+            style={{ background: GRAD }}
+          >
+            {t.solutions.viewAll} <ArrowRight size={14} />
           </Link>
         </div>
       </div>
@@ -132,50 +190,50 @@ function SolutionsGrid() {
 
 function Industries() {
   const { t } = useLang();
-  const grads = [
-    "linear-gradient(135deg,#1a3a5c,#0f2a45)",
-    "linear-gradient(135deg,#0f2a45,#1a3a5c)",
-    "linear-gradient(135deg,#0a2a20,#1a3a2c)",
-    "linear-gradient(135deg,#0f1f35,#1a3a5c)",
-    "linear-gradient(135deg,#0a2a20,#16322a)",
-    "linear-gradient(135deg,#0f2a45,#2a1a30)",
-    "linear-gradient(135deg,#0f2a45,#1a3a5c)",
-  ];
-  const icons = ["🏛","🏢","🏛","🛡","📱","🛒","🌆"];
+  const items4 = t.industries.items.slice(0, 4);
+  const items3 = t.industries.items.slice(4);
   return (
-    <section className="py-20 px-12 bg-white">
+    <section className="py-20 px-10 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold mb-3">{t.industries.title}</h2>
+        <div className="text-center mb-14">
+          <h2 className="text-3xl font-extrabold text-slate-900 mb-3">{t.industries.title}</h2>
           <p className="text-slate-500">{t.industries.subtitle}</p>
         </div>
         <div className="grid grid-cols-4 gap-4">
-          {t.industries.items.slice(0,4).map((label, i) => (
-            <div key={label} className="relative h-48 rounded-2xl overflow-hidden cursor-pointer group">
-              <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-105"
-                style={{ background: grads[i] }} />
-              <div className="absolute inset-0 flex items-end p-4"
-                style={{ background: "linear-gradient(to top,rgba(5,15,30,0.85),transparent)" }}>
-                <span className="text-white font-semibold flex items-center gap-2">
-                  {icons[i]} {label}
-                </span>
+          {items4.map((label, i) => {
+            const Icon = IND_ICONS[i];
+            return (
+              <div key={label} className="relative h-48 rounded-2xl overflow-hidden cursor-pointer group">
+                <div
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                  style={{ background: IND_GRADS[i] }}
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top,rgba(5,15,30,0.88),transparent 60%)" }} />
+                <div className="absolute bottom-0 left-0 right-0 p-4 flex items-center gap-2.5">
+                  <Icon size={15} color="white" />
+                  <span className="text-white font-semibold text-sm">{label}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-        <div className="grid grid-cols-3 gap-4 mt-4">
-          {t.industries.items.slice(4).map((label, i) => (
-            <div key={label} className="relative h-48 rounded-2xl overflow-hidden cursor-pointer group">
-              <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-105"
-                style={{ background: grads[i+4] }} />
-              <div className="absolute inset-0 flex items-end p-4"
-                style={{ background: "linear-gradient(to top,rgba(5,15,30,0.85),transparent)" }}>
-                <span className="text-white font-semibold flex items-center gap-2">
-                  {icons[i+4]} {label}
-                </span>
+        <div className="grid grid-cols-3 gap-4 mt-4" style={{ maxWidth: "75%", margin: "16px auto 0" }}>
+          {items3.map((label, i) => {
+            const Icon = IND_ICONS[i + 4];
+            return (
+              <div key={label} className="relative h-48 rounded-2xl overflow-hidden cursor-pointer group">
+                <div
+                  className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                  style={{ background: IND_GRADS[i + 4] }}
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top,rgba(5,15,30,0.88),transparent 60%)" }} />
+                <div className="absolute bottom-0 left-0 right-0 p-4 flex items-center gap-2.5">
+                  <Icon size={15} color="white" />
+                  <span className="text-white font-semibold text-sm">{label}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -184,29 +242,38 @@ function Industries() {
 
 function Architecture() {
   const { t } = useLang();
-  const icons = ["🌐","🛡","📡","🔒","〜"];
   return (
-    <section className="py-20 px-12" style={{ background: "linear-gradient(160deg,#1a3a5c,#2a4a6a)" }}>
+    <section
+      className="py-20 px-10"
+      style={{ background: "linear-gradient(160deg,#0f1f35 0%,#1a3a5c 55%,#3a6a8a 85%,#6ab0c0 100%)" }}
+    >
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-14">
           <h2 className="text-3xl font-extrabold text-white mb-3">{t.architecture.title}</h2>
-          <p style={{ color: "rgba(255,255,255,.6)" }}>{t.architecture.subtitle}</p>
+          <p style={{ color: "rgba(255,255,255,0.6)" }}>{t.architecture.subtitle}</p>
         </div>
         <div className="flex flex-col gap-3 max-w-2xl mx-auto">
-          {t.architecture.items.map((item, i) => (
-            <div key={item}
-              className="flex items-center justify-between px-6 py-4 rounded-xl cursor-pointer transition-all"
-              style={{ background: "rgba(255,255,255,.07)", border: "1px solid rgba(255,255,255,.12)" }}>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white"
-                  style={{ background: "linear-gradient(135deg,#0ea5e9,#14b8a6)", minWidth: 40 }}>
-                  {icons[i]}
+          {t.architecture.items.map((item, i) => {
+            const Icon = ARCH_ICONS[i];
+            return (
+              <div
+                key={item}
+                className="flex items-center justify-between px-6 py-4 rounded-xl cursor-pointer group transition-all hover:border-white/25"
+                style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)" }}
+              >
+                <div className="flex items-center gap-4">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: GRAD }}
+                  >
+                    <Icon size={18} color="white" strokeWidth={1.8} />
+                  </div>
+                  <span className="text-white font-medium text-sm">{item}</span>
                 </div>
-                <span className="text-white font-medium">{item}</span>
+                <ChevronRight size={16} style={{ color: "rgba(255,255,255,0.35)" }} />
               </div>
-              <span style={{ color: "rgba(255,255,255,.4)" }}>›</span>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -216,20 +283,54 @@ function Architecture() {
 function Why() {
   const { t } = useLang();
   return (
-    <section className="py-20 px-12" style={{ background: "#F4F7FA" }}>
+    <section className="py-20 px-10" style={{ background: "#f8fafc" }}>
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-extrabold mb-2">{t.why.title}</h2>
-          <p className="text-slate-500">{t.why.subtitle}</p>
+        <div className="text-center mb-14">
+          <h2 className="text-3xl font-extrabold text-slate-900 mb-2">{t.why.title}</h2>
+          <p className="text-slate-500 text-sm">{t.why.subtitle}</p>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          {t.why.items.map(i => (
-            <div key={i} className="bg-white border border-slate-100 rounded-xl px-5 py-4 flex items-center gap-3 font-medium text-sm">
-              <div className="w-8 h-8 rounded-full flex items-center justify-center text-white flex-shrink-0"
-                style={{ background: "#34d399" }}>✓</div>
-              {i}
+          {t.why.items.map((item) => (
+            <div
+              key={item}
+              className="bg-white border border-slate-100 rounded-xl px-5 py-4 flex items-center gap-3 hover:border-cyan-100 hover:shadow-sm transition-all"
+            >
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ background: "linear-gradient(135deg,#10b981,#059669)" }}
+              >
+                <CheckCircle2 size={16} color="white" strokeWidth={2} />
+              </div>
+              <span className="text-sm font-medium text-slate-700">{item}</span>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SuccessStory() {
+  return (
+    <section className="py-16 px-10 bg-white">
+      <div className="max-w-3xl mx-auto">
+        <div
+          className="rounded-2xl p-12"
+          style={{ background: "linear-gradient(135deg,#38bdf8 0%,#0ea5e9 30%,#14b8a6 65%,#059669 100%)" }}
+        >
+          <span className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-6"
+            style={{ background: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff" }}>
+            <Shield size={11} /> Success Story
+          </span>
+          <h2 className="text-3xl font-extrabold text-white mb-4">SecureNova FinTech Security</h2>
+          <p className="text-white/80 mb-2">AI for Secure Mobile Payments</p>
+          <div className="flex items-center gap-2 font-semibold text-white my-5">
+            🏆 AI Bridge Challenge 2025 Winner
+          </div>
+          <p className="text-white/70 text-sm mb-7">GIZ – I2COMSAPP</p>
+          <button className="inline-flex items-center gap-2 text-sm font-semibold bg-white text-slate-900 px-5 py-2.5 rounded-xl cursor-pointer border-none hover:-translate-y-0.5 transition-transform">
+            Learn More <ArrowRight size={14} />
+          </button>
         </div>
       </div>
     </section>
@@ -239,17 +340,21 @@ function Why() {
 function CTA() {
   const { t } = useLang();
   return (
-    <section className="py-20 px-12 text-center" style={{ background: "#0f1f35" }}>
-      <h2 className="text-4xl font-extrabold text-white mb-4">{t.cta.title}</h2>
-      <p className="text-slate-400 text-base mb-10 max-w-md mx-auto">{t.cta.subtitle}</p>
+    <section className="py-20 px-10 text-center" style={{ background: NAVY }}>
+      <h2 className="text-4xl font-extrabold text-white mb-4 tracking-tight">{t.cta.title}</h2>
+      <p className="text-slate-400 max-w-md mx-auto mb-10">{t.cta.subtitle}</p>
       <div className="flex justify-center gap-4">
-        <Link href="/pricing"
-          className="flex items-center gap-2 text-sm font-semibold text-white px-6 py-3 rounded-lg no-underline"
-          style={{ background: "linear-gradient(135deg,#0ea5e9,#14b8a6)" }}>
-          {t.cta.bookAssessment}
+        <Link
+          href="/pricing"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-white px-6 py-3 rounded-xl no-underline hover:opacity-90 transition-opacity"
+          style={{ background: GRAD }}
+        >
+          {t.cta.bookAssessment} <ArrowRight size={14} />
         </Link>
-        <Link href="/pricing"
-          className="flex items-center gap-2 text-sm font-semibold text-white px-6 py-3 rounded-lg border-2 border-white no-underline hover:bg-white/10 transition-colors">
+        <Link
+          href="/pricing"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-white px-6 py-3 rounded-xl border border-white/30 no-underline hover:bg-white/10 transition-colors"
+        >
           {t.cta.viewPricing}
         </Link>
       </div>
@@ -266,6 +371,7 @@ export default function Home() {
       <Industries />
       <Architecture />
       <Why />
+      <SuccessStory />
       <CTA />
     </>
   );
