@@ -68,9 +68,14 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold text-sm mb-4 tracking-wide">{f.contact}</h4>
             <div className="flex flex-col gap-2.5">
-              <p className="text-slate-500 text-sm">contact@securenova.ai</p>
+              <Link href="/contact" className="text-slate-500 text-sm no-underline hover:text-slate-300 transition-colors">contact@securenova.ai</Link>
               <p className="text-slate-500 text-sm">+222 XX XX XX XX</p>
               <p className="text-slate-500 text-sm">Nouakchott, Mauritanie</p>
+              <Link href="/demo"
+                className="mt-2 inline-flex text-xs font-semibold text-white px-3 py-1.5 rounded-lg no-underline"
+                style={{ background: "linear-gradient(135deg,#0ea5e9,#14b8a6)" }}>
+                Request Demo →
+              </Link>
             </div>
           </div>
         </div>

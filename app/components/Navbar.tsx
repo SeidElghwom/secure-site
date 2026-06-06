@@ -93,12 +93,12 @@ export default function Navbar() {
           )}
         </div>
 
-        <Link href="/about" className="text-sm text-slate-600 font-medium no-underline hover:text-cyan-500 transition-colors">
+        <Link href="/contact" className="text-sm text-slate-600 font-medium no-underline hover:text-cyan-500 transition-colors">
           {t.nav.contact}
         </Link>
 
         <Link
-          href="/pricing"
+          href="/demo"
           className="text-sm font-semibold text-white px-4 py-2 rounded-lg no-underline transition-opacity hover:opacity-90"
           style={{ background: "linear-gradient(135deg,#0ea5e9,#14b8a6)" }}
         >

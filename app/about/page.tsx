@@ -67,7 +67,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="py-16 px-10 bg-white">
+      {/* <section className="py-16 px-10 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-extrabold text-slate-900 mb-3">{ap.teamTitle}</h2>
@@ -88,7 +88,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA */}
       <section className="py-20 px-10 text-center" style={{ background: "#0f1f35" }}>
